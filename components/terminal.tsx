@@ -186,7 +186,7 @@ export default function Terminal() {
             <p>Hello World!</p>
             <p>I&apos;m Lundy. A remote software developer doing web dev things based in Jember, Indonesia.</p>
             <p>Quite fond of puzzles and can say that problem solving is a passion of mine. I have a strong eye for details and design and am always keen on learning new things. Here you will find a selection of my latest works and collaborations, ask for freelance work, or just send me an invitation to grab a coffee together, virtually or not.</p>
-            <p><a href="https://drive.google.com/file/d/14vEvMNTT2Ql3M8GR0hwgGQjV0GP116v_/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>DOWNLOAD MY RESUME &#x1F865;</HyperText></a></p>
+            <p><a href="https://drive.google.com/file/d/1iLV0r6rV-920GaBvW1_uqBjyG9OPVBmp/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>DOWNLOAD MY RESUME &#x1F865;</HyperText></a></p>
             <br/>
           </div>
         )
@@ -359,7 +359,7 @@ export default function Terminal() {
         if (!weatherData) {
           response = (
             <div>
-              <div>{url}</div>
+              <div>{url}</div>P
               <p>Loading...</p>
               <br/>
             </div>
@@ -371,9 +371,9 @@ export default function Terminal() {
           const icon = "https://openweathermap.org/img/wn/"+weatherData.weather[0].icon+".png"
           response = (
             <div>
-              <Image src={icon} width={50} height={50} alt="Weather Icon"/>
               <p>The current temperature in Jember, Indonesia is: <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03]">{temp}</HyperText></p>
               <p>Feels like <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03]">{feels_like}</HyperText> <span className="capitalize">{description}</span></p>
+              <Image src={icon} width={50} height={50} alt="Weather Icon"/>
               <br/>
             </div>
           )
