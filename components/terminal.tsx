@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { ArrowDown, ArrowUp } from "lucide-react"
+import { ArrowDown, ArrowUp, CloudCog } from "lucide-react"
 import { useState, useEffect, useRef, type KeyboardEvent } from "react"
 import { HyperText } from "@/components/magicui/hyper-text"
 import axios from "axios"
@@ -115,6 +115,36 @@ export default function Terminal() {
       }
     });
   }, [url]);
+
+  // monkeytype API
+  const [monkeyTypeData, setMonkeyTypeData] = useState<any>(null);
+  useEffect(() => {
+    async function getMonkeyTypeData() {
+      try {
+        const response = await fetch('/api/monkeytype');
+        const result = await response.json();
+        setMonkeyTypeData(result);
+      } catch (err) {
+        console.error("Failed to load data", err);
+      }
+    }
+    getMonkeyTypeData();
+  }, []);
+
+  // wakatime API
+  const [wakaTimeData, setWakaTimeData] = useState<any>(null);
+  useEffect(() => {
+    async function getWakaTimeData() {
+      try {
+        const response = await fetch('/api/wakatime');
+        const result = await response.json();
+        setWakaTimeData(result.data);
+      } catch (error) {
+        console.error("Error fetching WakaTime stats:", error);
+      }
+    }
+    getWakaTimeData();
+  }, []);
   
   const handleCommand = (cmd: string) => {
     // Add command to history
@@ -139,7 +169,7 @@ export default function Terminal() {
               </tr>
               <tr>
                 <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>about</HyperText></span></td>
-                <td>Displays basic information about lundy.</td>
+                <td>Basic information about lundy.</td>
               </tr>
               <tr>
                 <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>clear</HyperText></span></td>
@@ -147,31 +177,35 @@ export default function Terminal() {
               </tr>
               <tr>
                 <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>contact</HyperText></span></td>
-                <td>Displays contact information for lundy.</td>
+                <td>Contact information for lundy.</td>
               </tr>
               <tr>
                 <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>datetime</HyperText></span></td>
-                <td>Displays the current date and time in the lundy&apos;s timezone.</td>
+                <td>The current date and time in the lundy&apos;s timezone.</td>
               </tr>
               <tr>
                 <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>experience</HyperText></span>&nbsp;&nbsp;&nbsp;</td>
-                <td>Displays information about lundy&apos;s experience.</td>
+                <td>Information about lundy&apos;s experience.</td>
               </tr>
               <tr>
                 <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>help</HyperText></span></td>
                 <td>Provides help information for lundyscript terminal commands.</td>
               </tr>
               <tr>
+                <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>performance</HyperText></span></td>
+                <td>Indicator typing skill and coding activity time session in real time.</td>  
+              </tr>
+              <tr>
                 <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>projects</HyperText></span></td>
-                <td>Displays information about what projects lundy has done in the past.</td>
+                <td>List of selected projects lundy has done in the past.</td>
               </tr>
               <tr>
                 <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>skills</HyperText></span></td>
-                <td>Displays information about lundy&apos;s skills as a remote software developer.</td>
+                <td>Lundy&apos;s tech skills as a remote software developer.</td>
               </tr>
               <tr>
                 <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>weather</HyperText></span></td>
-                <td>Displays the current weather in the city where lundy lives.</td>
+                <td>The current weather in the city where lundy lives.</td>
               </tr>
             </tbody>
           </table>
@@ -275,61 +309,178 @@ export default function Terminal() {
           </div>
         )
         break
+      
+      case "performance":
+        if (!monkeyTypeData && !wakaTimeData) {
+          response = (
+            <div>
+              <p>Error loading data.</p>
+              <br/>
+            </div>
+          )
+        } else {
+          const addAt = new Date(monkeyTypeData.profile.addedAt);
+          const highestwpm = Math.max(...monkeyTypeData.result.map((o: { wpm: number; }) => o.wpm));
+          const averagewpm = (monkeyTypeData.result.reduce((acc: number, curr: { wpm: number; }) => acc + curr.wpm, 0) / monkeyTypeData.result.length).toFixed(2);
+          const highestaccuracy = Math.max(...monkeyTypeData.result.map((o: { acc: number; }) => o.acc));
+          const averageaccuracy = (monkeyTypeData.result.reduce((acc: number, curr: { acc: number; }) => acc + curr.acc, 0) / monkeyTypeData.result.length).toFixed(2);
+          const highestconsistency = Math.max(...monkeyTypeData.result.map((o: { consistency: number; }) => o.consistency));
+          const averageconsistency = (monkeyTypeData.result.reduce((acc: number, curr: { consistency: number; }) => acc + curr.consistency, 0) / monkeyTypeData.result.length).toFixed(2);
+          const start = new Date(wakaTimeData.start);
+          const end = new Date(wakaTimeData.end);
+          let categories = [];
+          let category:any[] = [];
+          for (let i = 0; i < wakaTimeData.data.length; i++) {
+            const raw = wakaTimeData.data[i]["categories"];
+            for (let j = 0; j < raw.length; j++) {
+              const category = raw[j];
+              categories.push({name: category.name, total_seconds: category.total_seconds});
+            }
+          }
+          let cumulative_total_category = 0;
+          categories.reduce(function(res: any, value: any) {
+            if (!res[value.name]) {
+              res[value.name] = { name: value.name, total_seconds: 0 , percent: 0};
+              category.push(res[value.name])
+            }
+            res[value.name].total_seconds += value.total_seconds;
+            cumulative_total_category += value.total_seconds;
+            res[value.name].percent = Math.round((res[value.name].total_seconds / cumulative_total_category * 100) * 100) / 100;
+            return res;
+          }, {});
+          
+          let languages = [];
+          let language:any[] = [];
+          for (let i = 0; i < wakaTimeData.data.length; i++) {
+            const raw = wakaTimeData.data[i]["languages"];
+            for (let j = 0; j < raw.length; j++) {
+              const language = raw[j];
+              languages.push({name: language.name, total_seconds: language.total_seconds});
+            }
+          }
+          let cumulative_total_language = 0;
+          languages.reduce(function(res: any, value: any) {
+            if (!res[value.name]) {
+              res[value.name] = { name: value.name, total_seconds: 0 , percent: 0};
+              language.push(res[value.name])
+            }
+            res[value.name].total_seconds += value.total_seconds;
+            cumulative_total_language += value.total_seconds;
+            res[value.name].percent = Math.round((res[value.name].total_seconds / cumulative_total_language * 100) * 100) / 100;
+            return res;
+          }, {});
+
+          response = (
+            <div>
+              <table>
+                <tbody>
+                  <tr>
+                    <td colSpan={2}>Typing skill with <a href="https://monkeytype.com/" target="_blank" className="underline italic hover:text-[#B3FC03]">monkeytype»</a> typing test.</td>
+                  </tr>
+                  <tr>
+                    <td>Username</td>
+                    <td>: <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{monkeyTypeData.profile.name}</HyperText></td>
+                  </tr>
+                  <tr>
+                    <td>Join At</td>
+                    <td>: <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{addAt.toLocaleDateString("ID")}</HyperText></td>
+                  </tr>
+                  <tr>
+                    <td>Typing Test</td>
+                    <td>: <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{monkeyTypeData.profile.typingStats.startedTests}</HyperText> (started) - <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{monkeyTypeData.profile.typingStats.completedTests+` (`+Math.round((monkeyTypeData.profile.typingStats.completedTests/monkeyTypeData.profile.typingStats.startedTests*100) * 100) / 100+` %)`}</HyperText> (completed)</td>
+                  </tr>
+                  <tr>
+                    <td>WPM (Words Per Minutes)</td>
+                    <td>: <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{highestwpm.toString()}</HyperText> (highest) - <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{averagewpm.toString()}</HyperText> (average)</td>
+                  </tr>
+                  <tr>
+                    <td>Accuracy</td>
+                    <td>: <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{highestaccuracy+` %`}</HyperText> (highest) - <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{averageaccuracy+` %`}</HyperText> (average)</td>
+                  </tr>
+                  <tr>
+                    <td>Consistency</td>
+                    <td>: <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{highestconsistency+` %`}</HyperText> (highest) - <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{averageconsistency+` %`}</HyperText> (average)</td>
+                  </tr>
+                  <tr><td colSpan={2}><br/></td></tr>
+                  <tr>
+                    <td colSpan={2}>Total time i spent on coding activity session with <a href="https://wakatime.com/" target="_blank" className="underline italic hover:text-[#B3FC03]">wakatime<span className="text-md">»</span></a> metrics from i join at <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{start.toLocaleDateString("ID")}</HyperText> until now <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{end.toLocaleDateString("ID")}</HyperText> is <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{wakaTimeData.cumulative_total.text}</HyperText></td>
+                  </tr>
+                  <tr><td colSpan={2} className="italic text-muted-foreground">Development breakdown:</td></tr>
+                  {category.map((cat: any, i: any) => (
+                    <tr key={i}>
+                      <td>{cat.name}</td>
+                      <td>: <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{Math.floor(cat.total_seconds / 3600)+' hrs '+Math.floor((cat.total_seconds % 3600) / 60)+' mins'}</HyperText> <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{`(`+cat.percent+` %)`}</HyperText> </td>
+                    </tr>
+                  ))}
+                  <tr><td colSpan={2} className="italic text-muted-foreground">Languages:</td></tr>
+                  {language.map((lan: any, j: any) => (
+                    <tr key={j}>
+                      <td>{lan.name}</td>
+                      <td>: <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{Math.floor(lan.total_seconds / 3600)+' hrs '+Math.floor((lan.total_seconds % 3600) / 60)+' mins'}</HyperText> <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{`(`+lan.percent+` %)`}</HyperText> </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <br/>
+            </div>
+          )
+        }
+        break
 
       case "projects":
         response = (
           <div>
             <ul>
               <li>
-                <a href="https://simrpl.unmuhjember.ac.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SIMRPL v2.0 🡥</HyperText></a>
+                <a href="https://simrpl.unmuhjember.ac.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SIMRPL v2.0 </HyperText><span className="text-[16px]">➚</span></a>
                 <p>Sistem Informasi Manajemen Rekognisi Pembelajaran Lampau Universitas Muhammadiyah Jember</p>
                 <dl>2024 | Build with Laravel, TailwindCSS, and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://www.sdhamkajember.sch.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SDHAMKA v1.0 🡥</HyperText></a>
+                <a href="https://www.sdhamkajember.sch.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SDHAMKA v1.0 </HyperText><span className="text-[16px]">➚</span></a>
                 <p>Landing Page, Ensiklopedia dan PPBD Online SD Muhammadiyah Kaliwates Jember</p>
                 <dl>2024 | Build with NextJS, TailwindCSS, shadcn/ui and PostgreSQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://moyamu-v2.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>MOYAMU v2.0 🡥</HyperText></a>
+                <a href="https://moyamu-v2.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>MOYAMU v2.0 </HyperText><span className="text-[16px]">➚</span></a>
                 <p>Aplikasi Point of Sales Moyamu Jember</p>
                 <dl>2024 | Build with NextJS, TailwindCSS, shadcn/ui and PostgreSQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://sahabatmbk.com/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SAHABATAMK v2.0 🡥</HyperText></a>
+                <a href="https://sahabatmbk.com/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SAHABATAMK v2.0 </HyperText><span className="text-[16px]">➚</span></a>
                 <p>Media belajar untuk Mahasiswa Berkebutuhan Khusus (MBK).</p>
                 <dl>2023 | Build with CodeIgniter and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://syaharrasa.com/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SYAHARRASA v1.0 🡥</HyperText></a>
+                <a href="https://syaharrasa.com/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SYAHARRASA v1.0 </HyperText><span className="text-[16px]">➚</span></a>
                 <p>Homemade Cookies Landing Page and Admin Dashboard</p>
                 <dl>2023 | Build with Laravel, TailwindCSS, daisyUI and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://github.com/lundyscript/lundyscript.github.io.git" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>LUNDYSCRIPT v3.3 🡥</HyperText></a>
+                <a href="https://github.com/lundyscript/lundyscript.github.io.git" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>LUNDYSCRIPT v3.3 </HyperText><span className="text-[16px]">➚</span></a>
                 <p>My personal portfolio.</p>
                 <dl>2023 | Build with React, Vite and TailwindCSS</dl>
                 <br />
               </li>
               <li>
-                <a href="https://kbtkmambaululum.sch.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SIMU v1.0 🡥</HyperText></a>
+                <a href="https://kbtkmambaululum.sch.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SIMU v1.0 </HyperText><span className="text-[16px]">➚</span></a>
                 <p>Sistem Informasi dan Website Sekolah TK Mambaul Ulum Jember</p>
                 <dl>2023 | Build with Laravel, TailwindCSS and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://github.com/lundyscript/sam-v1.0.0.git" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SAM v1.0 🡥</HyperText></a>
+                <a href="https://github.com/lundyscript/sam-v1.0.0.git" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SAM v1.0 </HyperText><span className="text-[16px]">➚</span></a>
                 <p>Sistem Administrasi Moyamu Jember</p>
                 <dl>2018 | Build with PHP Native, Bootstrap 4 and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="http://repository.unmuhjember.ac.id/517/1/ARTIKEL.pdf" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>JSTLVQ v1.0 🡥</HyperText></a>
+                <a href="http://repository.unmuhjember.ac.id/517/1/ARTIKEL.pdf" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>JSTLVQ v1.0 </HyperText><span className="text-[16px]">➚</span></a>
                 <p>Aplikasi Identifikasi Nomor Polisi Kendaraan Roda Dua Menggunakan Jaringan Syaraf Tiruan Learning Vector Quantization</p>
                 <dl>2017 | Build with Matlab</dl>
               </li>
@@ -342,14 +493,11 @@ export default function Terminal() {
       case "skills":
         response = (
           <div>
-            <p className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>Languages</HyperText>:</p>
-            <p>HTML, CSS, JavaScript, PHP</p>
-            <br />
             <p className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>Libraries/Frameworks</HyperText>:</p>
             <p>Laravel, CodeIgniter, NextJS, NodeJS, TailwindCSS, Bootstrap, React, Vite</p>
             <br />
             <p className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>Other</HyperText>:</p>
-            <p>PostgreSQL, MySql, Git, Github, Photoshop, CorelDraw</p>
+            <p>PostgreSQL, MySql, Git, Github, Postman</p>
             <br />
           </div>
         )

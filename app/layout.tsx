@@ -20,8 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />\
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" type="image/<generated>" sizes="<generated>" />
       </head>
       <body className={firaCode.variable}>
