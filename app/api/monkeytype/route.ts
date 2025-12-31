@@ -5,7 +5,7 @@ export async function GET() {
   const resultUrl = 'https://api.monkeytype.com/results?offset=0';
 
   const headers = {
-    'Authorization': `ApeKey ${process.env.NEXT_PUBLIC_MONKEYTYPE_APE_KEY}`,
+    'Authorization': `ApeKey ${process.env.MONKEYTYPE_APE_KEY}`,
     'Content-Type': 'application/json',
   };
 

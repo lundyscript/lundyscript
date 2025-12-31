@@ -9,7 +9,7 @@ export async function GET() {
   try {
     const response = await fetch(url, {
       headers: {
-        Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_WAKATIME_API_KEY!).toString('base64')}`,
+        Authorization: `Basic ${Buffer.from(process.env.WAKATIME_API_KEY!).toString('base64')}`,
       },
     });
 
