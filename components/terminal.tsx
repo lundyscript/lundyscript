@@ -348,6 +348,7 @@ export default function Terminal() {
             res[value.name].percent = Math.round((res[value.name].total_seconds / cumulative_total_category * 100) * 100) / 100;
             return res;
           }, {});
+          category.sort((a, b) => b.total_seconds - a.total_seconds)
           
           let languages = [];
           let language:any[] = [];
@@ -369,7 +370,7 @@ export default function Terminal() {
             res[value.name].percent = Math.round((res[value.name].total_seconds / cumulative_total_language * 100) * 100) / 100;
             return res;
           }, {});
-
+          language.sort((a, b) => b.total_seconds - a.total_seconds)
           response = (
             <div>
               <table>
