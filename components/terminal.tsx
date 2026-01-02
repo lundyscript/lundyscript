@@ -193,7 +193,7 @@ export default function Terminal() {
               </tr>
               <tr>
                 <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>performance</HyperText></span></td>
-                <td>Indicator typing skill and coding activity time session in real time.</td>  
+                <td>Real time stats of lundy's typing skill and coding activity time session.</td>  
               </tr>
               <tr>
                 <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>projects</HyperText></span></td>
@@ -201,7 +201,7 @@ export default function Terminal() {
               </tr>
               <tr>
                 <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>skills</HyperText></span></td>
-                <td>Lundy&apos;s tech skills as a remote software developer.</td>
+                <td>Tech stack that lundy&apos;s usually uses as a remote software developer.</td>
               </tr>
               <tr>
                 <td><span className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>weather</HyperText></span></td>
@@ -403,7 +403,7 @@ export default function Terminal() {
                   </tr>
                   <tr><td colSpan={2}><br/></td></tr>
                   <tr>
-                    <td colSpan={2}>Total time i spent on coding activity session with <a href="https://wakatime.com/" target="_blank" className="underline italic hover:text-[#B3FC03]">wakatime<span className="text-md">»</span></a> metrics from i join at <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{start.toLocaleDateString("ID")}</HyperText> until now <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{end.toLocaleDateString("ID")}</HyperText> is <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{wakaTimeData.cumulative_total.text}</HyperText></td>
+                    <td colSpan={2}>The total time i spent on coding activity session with <a href="https://wakatime.com/" target="_blank" className="underline italic hover:text-[#B3FC03]">wakatime<span className="text-md">»</span></a> metrics since i joined on <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{start.toLocaleDateString("ID")}</HyperText> until now <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{end.toLocaleDateString("ID")}</HyperText> is <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{wakaTimeData.cumulative_total.text}</HyperText></td>
                   </tr>
                   <tr><td colSpan={2} className="italic text-muted-foreground">Development breakdown:</td></tr>
                   {category.map((cat: any, i: any) => (
@@ -432,6 +432,12 @@ export default function Terminal() {
           <div>
             <ul>
               <li>
+                <a href="https://github.com/lundyscript/lundyscript.github.io.git" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>LUNDYSCRIPT v4.0 </HyperText><span className="text-[16px]">➚</span></a>
+                <p>My personal portfolio.</p>
+                <dl>2025 | Build with NextJS and TailwindCSS</dl>
+                <br />
+              </li>
+              <li>
                 <a href="https://simrpl.unmuhjember.ac.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SIMRPL v2.0 </HyperText><span className="text-[16px]">➚</span></a>
                 <p>Sistem Informasi Manajemen Rekognisi Pembelajaran Lampau Universitas Muhammadiyah Jember</p>
                 <dl>2024 | Build with Laravel, TailwindCSS, and MySQL</dl>
@@ -459,12 +465,6 @@ export default function Terminal() {
                 <a href="https://syaharrasa.com/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SYAHARRASA v1.0 </HyperText><span className="text-[16px]">➚</span></a>
                 <p>Homemade Cookies Landing Page and Admin Dashboard</p>
                 <dl>2023 | Build with Laravel, TailwindCSS, daisyUI and MySQL</dl>
-                <br />
-              </li>
-              <li>
-                <a href="https://github.com/lundyscript/lundyscript.github.io.git" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>LUNDYSCRIPT v3.3 </HyperText><span className="text-[16px]">➚</span></a>
-                <p>My personal portfolio.</p>
-                <dl>2023 | Build with React, Vite and TailwindCSS</dl>
                 <br />
               </li>
               <li>
