@@ -319,76 +319,64 @@ export default function Terminal() {
             </div>
           )
         } else {
-          const addAt = new Date(monkeyTypeData.profile.addedAt);
+          console.log(wakaTimeData);
           const highestwpm = Math.max(...monkeyTypeData.result.map((o: { wpm: number; }) => o.wpm));
           const averagewpm = (monkeyTypeData.result.reduce((acc: number, curr: { wpm: number; }) => acc + curr.wpm, 0) / monkeyTypeData.result.length).toFixed(2);
           const highestaccuracy = Math.max(...monkeyTypeData.result.map((o: { acc: number; }) => o.acc));
           const averageaccuracy = (monkeyTypeData.result.reduce((acc: number, curr: { acc: number; }) => acc + curr.acc, 0) / monkeyTypeData.result.length).toFixed(2);
           const highestconsistency = Math.max(...monkeyTypeData.result.map((o: { consistency: number; }) => o.consistency));
           const averageconsistency = (monkeyTypeData.result.reduce((acc: number, curr: { consistency: number; }) => acc + curr.consistency, 0) / monkeyTypeData.result.length).toFixed(2);
-          const start = new Date(wakaTimeData.start);
-          const end = new Date(wakaTimeData.end);
-          let categories = [];
-          let category:any[] = [];
-          for (let i = 0; i < wakaTimeData.data.length; i++) {
-            const raw = wakaTimeData.data[i]["categories"];
-            for (let j = 0; j < raw.length; j++) {
-              const category = raw[j];
-              categories.push({name: category.name, total_seconds: category.total_seconds});
-            }
-          }
-          let cumulative_total_category = 0;
-          categories.reduce(function(res: any, value: any) {
-            if (!res[value.name]) {
-              res[value.name] = { name: value.name, total_seconds: 0 , percent: 0};
-              category.push(res[value.name])
-            }
-            res[value.name].total_seconds += value.total_seconds;
-            cumulative_total_category += value.total_seconds;
-            res[value.name].percent = Math.round((res[value.name].total_seconds / cumulative_total_category * 100) * 100) / 100;
-            return res;
-          }, {});
-          category.sort((a, b) => b.total_seconds - a.total_seconds)
+          const start = new Date(wakaTimeData.data.range.start);
+          const end = new Date(wakaTimeData.data.range.end);
+          // let categories = [];
+          // let category:any[] = [];
+          // for (let i = 0; i < wakaTimeData.data.length; i++) {
+          //   const raw = wakaTimeData.data[i]["categories"];
+          //   for (let j = 0; j < raw.length; j++) {
+          //     const category = raw[j];
+          //     categories.push({name: category.name, total_seconds: category.total_seconds});
+          //   }
+          // }
+          // let cumulative_total_category = 0;
+          // categories.reduce(function(res: any, value: any) {
+          //   if (!res[value.name]) {
+          //     res[value.name] = { name: value.name, total_seconds: 0 , percent: 0};
+          //     category.push(res[value.name])
+          //   }
+          //   res[value.name].total_seconds += value.total_seconds;
+          //   cumulative_total_category += value.total_seconds;
+          //   res[value.name].percent = Math.round((res[value.name].total_seconds / cumulative_total_category * 100) * 100) / 100;
+          //   return res;
+          // }, {});
+          // category.sort((a, b) => b.total_seconds - a.total_seconds)
           
-          let languages = [];
-          let language:any[] = [];
-          for (let i = 0; i < wakaTimeData.data.length; i++) {
-            const raw = wakaTimeData.data[i]["languages"];
-            for (let j = 0; j < raw.length; j++) {
-              const language = raw[j];
-              languages.push({name: language.name, total_seconds: language.total_seconds});
-            }
-          }
-          let cumulative_total_language = 0;
-          languages.reduce(function(res: any, value: any) {
-            if (!res[value.name]) {
-              res[value.name] = { name: value.name, total_seconds: 0 , percent: 0};
-              language.push(res[value.name])
-            }
-            res[value.name].total_seconds += value.total_seconds;
-            cumulative_total_language += value.total_seconds;
-            res[value.name].percent = Math.round((res[value.name].total_seconds / cumulative_total_language * 100) * 100) / 100;
-            return res;
-          }, {});
-          language.sort((a, b) => b.total_seconds - a.total_seconds)
+          // let languages = [];
+          // let language:any[] = [];
+          // for (let i = 0; i < wakaTimeData.data.length; i++) {
+          //   const raw = wakaTimeData.data[i]["languages"];
+          //   for (let j = 0; j < raw.length; j++) {
+          //     const language = raw[j];
+          //     languages.push({name: language.name, total_seconds: language.total_seconds});
+          //   }
+          // }
+          // let cumulative_total_language = 0;
+          // languages.reduce(function(res: any, value: any) {
+          //   if (!res[value.name]) {
+          //     res[value.name] = { name: value.name, total_seconds: 0 , percent: 0};
+          //     language.push(res[value.name])
+          //   }
+          //   res[value.name].total_seconds += value.total_seconds;
+          //   cumulative_total_language += value.total_seconds;
+          //   res[value.name].percent = Math.round((res[value.name].total_seconds / cumulative_total_language * 100) * 100) / 100;
+          //   return res;
+          // }, {});
+          // language.sort((a, b) => b.total_seconds - a.total_seconds)
           response = (
             <div>
               <table>
                 <tbody>
                   <tr>
                     <td colSpan={2}>Typing skill with <a href="https://monkeytype.com/" target="_blank" className="underline italic hover:text-[#B3FC03]">monkeytype»</a> typing test.</td>
-                  </tr>
-                  <tr>
-                    <td>Username</td>
-                    <td>: <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{monkeyTypeData.profile.name}</HyperText></td>
-                  </tr>
-                  <tr>
-                    <td>Join At</td>
-                    <td>: <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{addAt.toLocaleDateString("ID")}</HyperText></td>
-                  </tr>
-                  <tr>
-                    <td>Typing Test</td>
-                    <td>: <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{monkeyTypeData.profile.typingStats.startedTests}</HyperText> (started) - <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{monkeyTypeData.profile.typingStats.completedTests+` (`+Math.round((monkeyTypeData.profile.typingStats.completedTests/monkeyTypeData.profile.typingStats.startedTests*100) * 100) / 100+` %)`}</HyperText> (completed)</td>
                   </tr>
                   <tr>
                     <td>WPM (Words Per Minutes)</td>
@@ -404,9 +392,9 @@ export default function Terminal() {
                   </tr>
                   <tr><td colSpan={2}><br/></td></tr>
                   <tr>
-                    <td colSpan={2}>The total time i spent on coding activity session with <a href="https://wakatime.com/" target="_blank" className="underline italic hover:text-[#B3FC03]">wakatime<span className="text-md">»</span></a> metrics since i joined on <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{start.toLocaleDateString("ID")}</HyperText> until now <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{end.toLocaleDateString("ID")}</HyperText> is <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{wakaTimeData.cumulative_total.text}</HyperText></td>
+                    <td colSpan={2}>The total time i spent on coding activity session with <a href="https://wakatime.com/" target="_blank" className="underline italic hover:text-[#B3FC03]">wakatime<span className="text-md">»</span></a> metrics since i joined on <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{start.toLocaleDateString("ID")}</HyperText> until now <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{end.toLocaleDateString("ID")}</HyperText> is <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{wakaTimeData.data.text}</HyperText></td>
                   </tr>
-                  <tr><td colSpan={2} className="italic text-muted-foreground">Development breakdown:</td></tr>
+                  {/* <tr><td colSpan={2} className="italic text-muted-foreground">Development breakdown:</td></tr>
                   {category.map((cat: any, i: any) => (
                     <tr key={i}>
                       <td>{cat.name}</td>
@@ -419,7 +407,7 @@ export default function Terminal() {
                       <td>{lan.name}</td>
                       <td>: <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{Math.floor(lan.total_seconds / 3600)+' hrs '+Math.floor((lan.total_seconds % 3600) / 60)+' mins'}</HyperText> <HyperText as={"span"} animateOnHover={false} className="text-[#B3FC03] lowercase">{`(`+lan.percent+` %)`}</HyperText> </td>
                     </tr>
-                  ))}
+                  ))} */}
                 </tbody>
               </table>
               <br/>
