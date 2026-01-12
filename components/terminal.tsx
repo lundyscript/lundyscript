@@ -319,7 +319,6 @@ export default function Terminal() {
             </div>
           )
         } else {
-          console.log(wakaTimeData);
           const highestwpm = Math.max(...monkeyTypeData.result.map((o: { wpm: number; }) => o.wpm));
           const averagewpm = (monkeyTypeData.result.reduce((acc: number, curr: { wpm: number; }) => acc + curr.wpm, 0) / monkeyTypeData.result.length).toFixed(2);
           const highestaccuracy = Math.max(...monkeyTypeData.result.map((o: { acc: number; }) => o.acc));
@@ -421,55 +420,55 @@ export default function Terminal() {
           <div>
             <ul>
               <li>
-                <a href="https://github.com/lundyscript/lundyscript.github.io.git" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>LUNDYSCRIPT v4.0 </HyperText><span className="text-[16px]">➚</span></a>
+                <a href="https://github.com/lundyscript/lundyscript.github.io.git" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>LUNDYSCRIPT v4.0 &#x1F865;</HyperText></a>
                 <p>My personal portfolio.</p>
                 <dl>2025 | Build with NextJS and TailwindCSS</dl>
                 <br />
               </li>
               <li>
-                <a href="https://simrpl.unmuhjember.ac.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SIMRPL v2.0 </HyperText><span className="text-[16px]">➚</span></a>
+                <a href="https://simrpl.unmuhjember.ac.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SIMRPL v2.0 &#x1F865;</HyperText></a>
                 <p>Sistem Informasi Manajemen Rekognisi Pembelajaran Lampau Universitas Muhammadiyah Jember</p>
                 <dl>2024 | Build with Laravel, TailwindCSS, and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://www.sdhamkajember.sch.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SDHAMKA v1.0 </HyperText><span className="text-[16px]">➚</span></a>
+                <a href="https://www.sdhamkajember.sch.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SDHAMKA v1.0 &#x1F865;</HyperText></a>
                 <p>Landing Page, Ensiklopedia dan PPBD Online SD Muhammadiyah Kaliwates Jember</p>
                 <dl>2024 | Build with NextJS, TailwindCSS, shadcn/ui and PostgreSQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://moyamu-v2.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>MOYAMU v2.0 </HyperText><span className="text-[16px]">➚</span></a>
+                <a href="https://moyamu-v2.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>MOYAMU v2.0 &#x1F865;</HyperText></a>
                 <p>Aplikasi Point of Sales Moyamu Jember</p>
                 <dl>2024 | Build with NextJS, TailwindCSS, shadcn/ui and PostgreSQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://sahabatmbk.com/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SAHABATAMK v2.0 </HyperText><span className="text-[16px]">➚</span></a>
+                <a href="https://sahabatmbk.com/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SAHABATAMK v2.0 &#x1F865;</HyperText></a>
                 <p>Media belajar untuk Mahasiswa Berkebutuhan Khusus (MBK).</p>
                 <dl>2023 | Build with CodeIgniter and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://syaharrasa.com/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SYAHARRASA v1.0 </HyperText><span className="text-[16px]">➚</span></a>
+                <a href="https://syaharrasa.com/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SYAHARRASA v1.0 &#x1F865;</HyperText></a>
                 <p>Homemade Cookies Landing Page and Admin Dashboard</p>
                 <dl>2023 | Build with Laravel, TailwindCSS, daisyUI and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://kbtkmambaululum.sch.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SIMU v1.0 </HyperText><span className="text-[16px]">➚</span></a>
+                <a href="https://kbtkmambaululum.sch.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SIMU v1.0 &#x1F865;</HyperText></a>
                 <p>Sistem Informasi dan Website Sekolah TK Mambaul Ulum Jember</p>
                 <dl>2023 | Build with Laravel, TailwindCSS and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://github.com/lundyscript/sam-v1.0.0.git" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SAM v1.0 </HyperText><span className="text-[16px]">➚</span></a>
+                <a href="https://github.com/lundyscript/sam-v1.0.0.git" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SAM v1.0 &#x1F865;</HyperText></a>
                 <p>Sistem Administrasi Moyamu Jember</p>
                 <dl>2018 | Build with PHP Native, Bootstrap 4 and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="http://repository.unmuhjember.ac.id/517/1/ARTIKEL.pdf" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>JSTLVQ v1.0 </HyperText><span className="text-[16px]">➚</span></a>
+                <a href="http://repository.unmuhjember.ac.id/517/1/ARTIKEL.pdf" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>JSTLVQ v1.0 &#x1F865;</HyperText></a>
                 <p>Aplikasi Identifikasi Nomor Polisi Kendaraan Roda Dua Menggunakan Jaringan Syaraf Tiruan Learning Vector Quantization</p>
                 <dl>2017 | Build with Matlab</dl>
               </li>
