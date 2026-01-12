@@ -104,17 +104,19 @@ export default function Terminal() {
     }, [])
 
   // Weather API
-  const [weatherData, setWeatherData] = useState<WeatherObject>();
-  const url = process.env.NEXT_PUBLIC_WEATHER_APP_API_URL+""+process.env.NEXT_PUBLIC_WEATHER_APP_API_KEY;
+  const [weatherData, setWeatherData] = useState<any>(null);
   useEffect(() => {
-    axios.get(url).then(response => {
-      if (response.status === 200) {
-        setWeatherData(response.data);
-      } else {
-        console.log("Error: " + response.status);
+    async function getWeatherData() {
+      try {
+        const response = await fetch('/api/weather');
+        const result = await response.json();
+        setWeatherData(result.data);
+      } catch (error) {
+        console.error("Error fetching Weather data:", error);
       }
-    });
-  }, [url]);
+    }
+    getWeatherData();
+  }, []);
 
   // monkeytype API
   const [monkeyTypeData, setMonkeyTypeData] = useState<any>(null);
@@ -124,8 +126,8 @@ export default function Terminal() {
         const response = await fetch('/api/monkeytype');
         const result = await response.json();
         setMonkeyTypeData(result);
-      } catch (err) {
-        console.error("Failed to load data", err);
+      } catch (error) {
+        console.error("Error fetching Monkeytype data:", error);
       }
     }
     getMonkeyTypeData();
@@ -140,7 +142,7 @@ export default function Terminal() {
         const result = await response.json();
         setWakaTimeData(result.data);
       } catch (error) {
-        console.error("Error fetching WakaTime stats:", error);
+        console.error("Error fetching WakaTime data:", error);
       }
     }
     getWakaTimeData();
@@ -495,8 +497,7 @@ export default function Terminal() {
         if (!weatherData) {
           response = (
             <div>
-              <div>{url}</div>P
-              <p>Loading...</p>
+              <p>Error loading data.</p>
               <br/>
             </div>
           )
