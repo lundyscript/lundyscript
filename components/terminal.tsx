@@ -222,8 +222,9 @@ export default function Terminal() {
             <p>Hello World!</p>
             <p>I&apos;m Lundy. A remote software developer doing web dev things based in Jember, Indonesia.</p>
             <p>Quite fond of puzzles and can say that problem solving is a passion of mine. I have a strong eye for details and design and am always keen on learning new things. Here you will find a selection of my latest works and collaborations, ask for freelance work, or just send me an invitation to grab a coffee together, virtually or not.</p>
-            <p><a href="https://drive.google.com/file/d/1iLV0r6rV-920GaBvW1_uqBjyG9OPVBmp/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>DOWNLOAD MY RESUME &#x1F865;</HyperText></a></p>
+            <p><a href="https://drive.google.com/file/d/1iLV0r6rV-920GaBvW1_uqBjyG9OPVBmp/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] hover:underline hover:underline-offset-4"><HyperText as={"span"} animateOnHover={true} className="lowercase">DOWNLOAD MY RESUME</HyperText></a><svg className="text-[#B3FC03] inline ml-1" data-testid="geist-icon" height="16" strokeLinejoin="round" viewBox="0 0 16 16" width="16"><path d="M11.5 9.75V11.25C11.5 11.3881 11.3881 11.5 11.25 11.5H4.75C4.61193 11.5 4.5 11.3881 4.5 11.25L4.5 4.75C4.5 4.61193 4.61193 4.5 4.75 4.5H6.25H7V3H6.25H4.75C3.7835 3 3 3.7835 3 4.75V11.25C3 12.2165 3.7835 13 4.75 13H11.25C12.2165 13 13 12.2165 13 11.25V9.75V9H11.5V9.75ZM8.5 3H9.25H12.2495C12.6637 3 12.9995 3.33579 12.9995 3.75V6.75V7.5H11.4995V6.75V5.56066L8.53033 8.52978L8 9.06011L6.93934 7.99945L7.46967 7.46912L10.4388 4.5H9.25H8.5V3Z" fill="currentColor"></path></svg></p>
             <br/>
+            {/* &#x1F865; symbol arrow */}
           </div>
         )
         break
@@ -422,55 +423,49 @@ export default function Terminal() {
           <div>
             <ul>
               <li>
-                <a href="https://github.com/lundyscript/lundyscript.github.io.git" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>LUNDYSCRIPT v4.0 &#x1F865;</HyperText></a>
+                <a href="https://github.com/lundyscript/lundyscript.github.io.git" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>LUNDYSCRIPT v4.0</HyperText><span className="text-white/50"> | </span><span className="text-white/50 hover:text-[#B3FC03] hover:underline hover:underline-offset-4">lundyscript.site<svg className="inline ml-1" data-testid="geist-icon" height="16" strokeLinejoin="round" viewBox="0 0 16 16" width="16"><path d="M11.5 9.75V11.25C11.5 11.3881 11.3881 11.5 11.25 11.5H4.75C4.61193 11.5 4.5 11.3881 4.5 11.25L4.5 4.75C4.5 4.61193 4.61193 4.5 4.75 4.5H6.25H7V3H6.25H4.75C3.7835 3 3 3.7835 3 4.75V11.25C3 12.2165 3.7835 13 4.75 13H11.25C12.2165 13 13 12.2165 13 11.25V9.75V9H11.5V9.75ZM8.5 3H9.25H12.2495C12.6637 3 12.9995 3.33579 12.9995 3.75V6.75V7.5H11.4995V6.75V5.56066L8.53033 8.52978L8 9.06011L6.93934 7.99945L7.46967 7.46912L10.4388 4.5H9.25H8.5V3Z" fill="currentColor"></path></svg></span></a>
                 <p>My personal portfolio.</p>
                 <dl>2025 | Build with NextJS and TailwindCSS</dl>
                 <br />
               </li>
               <li>
-                <a href="https://simrpl.unmuhjember.ac.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SIMRPL v2.0 &#x1F865;</HyperText></a>
+                <a href="https://simrpl.unmuhjember.ac.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>SIMRPL v2.0</HyperText><span className="text-white/50"> | </span><span className="text-white/50 hover:text-[#B3FC03] hover:underline hover:underline-offset-4">simrpl.unmuhjember.ac.id<svg className="inline ml-1" data-testid="geist-icon" height="16" strokeLinejoin="round" viewBox="0 0 16 16" width="16"><path d="M11.5 9.75V11.25C11.5 11.3881 11.3881 11.5 11.25 11.5H4.75C4.61193 11.5 4.5 11.3881 4.5 11.25L4.5 4.75C4.5 4.61193 4.61193 4.5 4.75 4.5H6.25H7V3H6.25H4.75C3.7835 3 3 3.7835 3 4.75V11.25C3 12.2165 3.7835 13 4.75 13H11.25C12.2165 13 13 12.2165 13 11.25V9.75V9H11.5V9.75ZM8.5 3H9.25H12.2495C12.6637 3 12.9995 3.33579 12.9995 3.75V6.75V7.5H11.4995V6.75V5.56066L8.53033 8.52978L8 9.06011L6.93934 7.99945L7.46967 7.46912L10.4388 4.5H9.25H8.5V3Z" fill="currentColor"></path></svg></span></a>
                 <p>Sistem Informasi Manajemen Rekognisi Pembelajaran Lampau Universitas Muhammadiyah Jember</p>
                 <dl>2024 | Build with Laravel, TailwindCSS, and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://www.sdhamkajember.sch.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SDHAMKA v1.0 &#x1F865;</HyperText></a>
+                <a href="https://www.sdhamkajember.sch.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>SDHAMKA v1.0</HyperText><span className="text-white/50"> | </span><span className="text-white/50 hover:text-[#B3FC03] hover:underline hover:underline-offset-4">sdhamkajember.sch.id<svg className="inline ml-1" data-testid="geist-icon" height="16" strokeLinejoin="round" viewBox="0 0 16 16" width="16"><path d="M11.5 9.75V11.25C11.5 11.3881 11.3881 11.5 11.25 11.5H4.75C4.61193 11.5 4.5 11.3881 4.5 11.25L4.5 4.75C4.5 4.61193 4.61193 4.5 4.75 4.5H6.25H7V3H6.25H4.75C3.7835 3 3 3.7835 3 4.75V11.25C3 12.2165 3.7835 13 4.75 13H11.25C12.2165 13 13 12.2165 13 11.25V9.75V9H11.5V9.75ZM8.5 3H9.25H12.2495C12.6637 3 12.9995 3.33579 12.9995 3.75V6.75V7.5H11.4995V6.75V5.56066L8.53033 8.52978L8 9.06011L6.93934 7.99945L7.46967 7.46912L10.4388 4.5H9.25H8.5V3Z" fill="currentColor"></path></svg></span></a>
                 <p>Landing Page, Ensiklopedia dan PPBD Online SD Muhammadiyah Kaliwates Jember</p>
                 <dl>2024 | Build with NextJS, TailwindCSS, shadcn/ui and PostgreSQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://moyamu-v2.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>MOYAMU v2.0 &#x1F865;</HyperText></a>
+                <a href="https://moyamu-v2.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>MOYAMU v2.0</HyperText><span className="text-white/50"> | </span><span className="text-white/50 hover:text-[#B3FC03] hover:underline hover:underline-offset-4">moyamu-v2.vercel.app<svg className="inline ml-1" data-testid="geist-icon" height="16" strokeLinejoin="round" viewBox="0 0 16 16" width="16"><path d="M11.5 9.75V11.25C11.5 11.3881 11.3881 11.5 11.25 11.5H4.75C4.61193 11.5 4.5 11.3881 4.5 11.25L4.5 4.75C4.5 4.61193 4.61193 4.5 4.75 4.5H6.25H7V3H6.25H4.75C3.7835 3 3 3.7835 3 4.75V11.25C3 12.2165 3.7835 13 4.75 13H11.25C12.2165 13 13 12.2165 13 11.25V9.75V9H11.5V9.75ZM8.5 3H9.25H12.2495C12.6637 3 12.9995 3.33579 12.9995 3.75V6.75V7.5H11.4995V6.75V5.56066L8.53033 8.52978L8 9.06011L6.93934 7.99945L7.46967 7.46912L10.4388 4.5H9.25H8.5V3Z" fill="currentColor"></path></svg></span></a>
                 <p>Aplikasi Point of Sales Moyamu Jember</p>
                 <dl>2024 | Build with NextJS, TailwindCSS, shadcn/ui and PostgreSQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://sahabatmbk.com/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SAHABATAMK v2.0 &#x1F865;</HyperText></a>
+                <a href="https://sahabatmbk.com/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>SAHABATAMK v2.0</HyperText><span className="text-white/50"> | </span><span className="text-white/50 hover:text-[#B3FC03] hover:underline hover:underline-offset-4">sahabatmbk.com<svg className="inline ml-1" data-testid="geist-icon" height="16" strokeLinejoin="round" viewBox="0 0 16 16" width="16"><path d="M11.5 9.75V11.25C11.5 11.3881 11.3881 11.5 11.25 11.5H4.75C4.61193 11.5 4.5 11.3881 4.5 11.25L4.5 4.75C4.5 4.61193 4.61193 4.5 4.75 4.5H6.25H7V3H6.25H4.75C3.7835 3 3 3.7835 3 4.75V11.25C3 12.2165 3.7835 13 4.75 13H11.25C12.2165 13 13 12.2165 13 11.25V9.75V9H11.5V9.75ZM8.5 3H9.25H12.2495C12.6637 3 12.9995 3.33579 12.9995 3.75V6.75V7.5H11.4995V6.75V5.56066L8.53033 8.52978L8 9.06011L6.93934 7.99945L7.46967 7.46912L10.4388 4.5H9.25H8.5V3Z" fill="currentColor"></path></svg></span></a>
                 <p>Media belajar untuk Mahasiswa Berkebutuhan Khusus (MBK).</p>
                 <dl>2023 | Build with CodeIgniter and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://syaharrasa.com/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SYAHARRASA v1.0 &#x1F865;</HyperText></a>
+                <a href="https://syaharrasa.com/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>SYAHARRASA v1.0</HyperText><span className="text-white/50"> | </span><span className="text-white/50 hover:text-[#B3FC03] hover:underline hover:underline-offset-4">syaharrasa.com<svg className="inline ml-1" data-testid="geist-icon" height="16" strokeLinejoin="round" viewBox="0 0 16 16" width="16"><path d="M11.5 9.75V11.25C11.5 11.3881 11.3881 11.5 11.25 11.5H4.75C4.61193 11.5 4.5 11.3881 4.5 11.25L4.5 4.75C4.5 4.61193 4.61193 4.5 4.75 4.5H6.25H7V3H6.25H4.75C3.7835 3 3 3.7835 3 4.75V11.25C3 12.2165 3.7835 13 4.75 13H11.25C12.2165 13 13 12.2165 13 11.25V9.75V9H11.5V9.75ZM8.5 3H9.25H12.2495C12.6637 3 12.9995 3.33579 12.9995 3.75V6.75V7.5H11.4995V6.75V5.56066L8.53033 8.52978L8 9.06011L6.93934 7.99945L7.46967 7.46912L10.4388 4.5H9.25H8.5V3Z" fill="currentColor"></path></svg></span></a>
                 <p>Homemade Cookies Landing Page and Admin Dashboard</p>
                 <dl>2023 | Build with Laravel, TailwindCSS, daisyUI and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://kbtkmambaululum.sch.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SIMU v1.0 &#x1F865;</HyperText></a>
+                <a href="https://kbtkmambaululum.sch.id/" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>SIMU v1.0</HyperText><span className="text-white/50"> | </span><span className="text-white/50 hover:text-[#B3FC03] hover:underline hover:underline-offset-4">kbtkmambaululum.sch.id<svg className="inline ml-1" data-testid="geist-icon" height="16" strokeLinejoin="round" viewBox="0 0 16 16" width="16"><path d="M11.5 9.75V11.25C11.5 11.3881 11.3881 11.5 11.25 11.5H4.75C4.61193 11.5 4.5 11.3881 4.5 11.25L4.5 4.75C4.5 4.61193 4.61193 4.5 4.75 4.5H6.25H7V3H6.25H4.75C3.7835 3 3 3.7835 3 4.75V11.25C3 12.2165 3.7835 13 4.75 13H11.25C12.2165 13 13 12.2165 13 11.25V9.75V9H11.5V9.75ZM8.5 3H9.25H12.2495C12.6637 3 12.9995 3.33579 12.9995 3.75V6.75V7.5H11.4995V6.75V5.56066L8.53033 8.52978L8 9.06011L6.93934 7.99945L7.46967 7.46912L10.4388 4.5H9.25H8.5V3Z" fill="currentColor"></path></svg></span></a>
                 <p>Sistem Informasi dan Website Sekolah TK Mambaul Ulum Jember</p>
                 <dl>2023 | Build with Laravel, TailwindCSS and MySQL</dl>
                 <br />
               </li>
               <li>
-                <a href="https://github.com/lundyscript/sam-v1.0.0.git" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>SAM v1.0 &#x1F865;</HyperText></a>
-                <p>Sistem Administrasi Moyamu Jember</p>
-                <dl>2018 | Build with PHP Native, Bootstrap 4 and MySQL</dl>
-                <br />
-              </li>
-              <li>
-                <a href="http://repository.unmuhjember.ac.id/517/1/ARTIKEL.pdf" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03] underline underline-offset-4"><HyperText as={"span"} animateOnHover={false}>JSTLVQ v1.0 &#x1F865;</HyperText></a>
+                <a href="http://repository.unmuhjember.ac.id/517/1/ARTIKEL.pdf" target="_blank" rel="noopener noreferrer" className="text-[#B3FC03]"><HyperText as={"span"} animateOnHover={false}>JSTLVQ v1.0</HyperText><span className="text-white/50"> | </span><span className="text-white/50 hover:text-[#B3FC03] hover:underline hover:underline-offset-4">repository<svg className="inline ml-1" data-testid="geist-icon" height="16" strokeLinejoin="round" viewBox="0 0 16 16" width="16"><path d="M11.5 9.75V11.25C11.5 11.3881 11.3881 11.5 11.25 11.5H4.75C4.61193 11.5 4.5 11.3881 4.5 11.25L4.5 4.75C4.5 4.61193 4.61193 4.5 4.75 4.5H6.25H7V3H6.25H4.75C3.7835 3 3 3.7835 3 4.75V11.25C3 12.2165 3.7835 13 4.75 13H11.25C12.2165 13 13 12.2165 13 11.25V9.75V9H11.5V9.75ZM8.5 3H9.25H12.2495C12.6637 3 12.9995 3.33579 12.9995 3.75V6.75V7.5H11.4995V6.75V5.56066L8.53033 8.52978L8 9.06011L6.93934 7.99945L7.46967 7.46912L10.4388 4.5H9.25H8.5V3Z" fill="currentColor"></path></svg></span></a>
                 <p>Aplikasi Identifikasi Nomor Polisi Kendaraan Roda Dua Menggunakan Jaringan Syaraf Tiruan Learning Vector Quantization</p>
                 <dl>2017 | Build with Matlab</dl>
               </li>
@@ -520,7 +515,7 @@ export default function Terminal() {
       default:
         response = (
           <div>
-            <p className="text-[#ff3c41]">{command} is not recognized as an internal or external command. Type &quot;help&quot; to see available commands.</p>
+            <p className="text-[#ff3c41]">"{command}" is not recognized as an internal or external command. Type &quot;help&quot; to see available commands.</p>
             <br/>
           </div>
         )
