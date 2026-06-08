@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fira_Code } from "next/font/google";
 import "./globals.css";
 
@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   title: "lundyscript",
   description: "Hello World! I'm Lundy, a remote software developer doing web dev things based in Jember, Indonesia.",
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
